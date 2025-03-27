@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "next",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+      "caughtErrorsIgnorePattern": "^_"
+    }],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-console": ["error", { "allow": ["warn", "error", "info", "trace"] }],
+    "import/no-anonymous-default-export": "off"
+  }
+}

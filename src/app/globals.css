@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  background: #f3f4fb;
+  font-size: 16px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* // The entire scrollbar */
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.4rem;
+  scrollbar-gutter: stable;
+  background-color: rgba(0, 26, 64, 0.08);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 26, 64, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 26, 64, 0.16);
+  border-radius: 0.4rem;
+}
+
+
+/* QR CODE CUSTOM CSS */
+
+#html5qr-code-full-region button,
+#html5qr-code-full-region span {
+  /* display: none !important; */
+}
+
+#html5-qrcode-button-camera-permission,
+#html5-qrcode-button-camera-stop,
+#html5-qrcode-button-camera-start,
+#html5-qrcode-button-file-selection,
+#html5qr-code-full-region__dashboard {
+  display: none !important;
+}
+
+#html5qr-code-full-region video {
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+}
+
+#html5qr-code-full-region {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+  height: 300px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+#html5qr-code-full-region::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background: red;
+  top: 50%;
+  left: 10%;
+  animation: scan-animation 2s infinite;
+}
+
+@keyframes scan-animation {
+  0% { transform: translateY(-100px); opacity: 0.2; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100px); opacity: 0.2; }
+}
+
+.html5qr-code-full-region-no-animation::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background: none !important;
+  top: 50%;
+  left: 10%;
+  animation: none !important;
+}
+
+/* CUSTOM VIDEO AREA */
+#html5qr-code-full-region video,
+#html5qr-code-full-region__scan_region video {
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 400px !important;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 480px) {
+  #html5qr-code-full-region {
+    max-width: 100%;
+    min-width: 280px;
+    height: 250px;
+  }
+  #html5qr-code-full-region video,
+  #html5qr-code-full-region__scan_region video {
+    width: 100% !important;
+    max-width: 100%;
+  }
+}
+
+.qr-error-message {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.qr-error-visible {
+  opacity: 1;
+}
