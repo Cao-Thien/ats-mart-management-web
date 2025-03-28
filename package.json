@@ -10,11 +10,11 @@
     "build:demo": "NODE_ENV=demo dotenv -e .env.demo next build",
     "prerun:demo": "yarn install & yarn build:demo",
     "server:demo": "yarn build:demo && yarn start",
-    "pm2:demo": "pm2 start \"yarn server -p 9310\" --name aw:demo",
+    "pm2:demo": "pm2 start \"yarn server -p 8230\" --name mmw:demo",
     "build:production": "NODE_ENV=production dotenv -e .env.production next build",
     "prerun:production": "yarn install & yarn build:production",
     "server:production": "yarn build:production && yarn start",
-    "pm2:production": "pm2 start \"yarn server -p 9310\" --name aw:production",
+    "pm2:production": "pm2 start \"yarn server -p 8230\" --name mmw:production",
     "server": "next start",
     "lint": "next lint",
     "postinstall": "node .husky/install.mjs"
