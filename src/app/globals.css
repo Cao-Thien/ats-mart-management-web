@@ -120,16 +120,29 @@ a {
   object-fit: cover;
 }
 
+/* #qr-shaded-region {
+  min-height: 250px !important;
+  height: 100%;
+  border-width: 12.5px 58px !important;
+} */
+
 @media (max-width: 480px) {
   #html5qr-code-full-region {
     max-width: 100%;
     min-width: 280px;
     height: 250px;
   }
+  #qr-shaded-region {
+    min-height: 150px !important;
+    height: 100%;
+    border-width: 12.5px 58px !important;
+  }
   #html5qr-code-full-region video,
   #html5qr-code-full-region__scan_region video {
     width: 100% !important;
     max-width: 100%;
+    height: auto;
+    object-fit: cover; 
   }
 }
 

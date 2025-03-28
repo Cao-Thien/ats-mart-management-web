@@ -1,4 +1,5 @@
 import { Button, Grid } from '@mui/material';
+import useResponsive from 'hooks/useResponsive';
 import { Html5Qrcode, Html5QrcodeCameraScanConfig, Html5QrcodeResult } from 'html5-qrcode';
 import Image from 'next/image';
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
@@ -36,6 +37,7 @@ const TIMEOUT_SCANNER_ERROR = 4000; //10S
 
 const ReactScanBarCode = forwardRef<ReactScanBarCodeRef, Html5QrcodePluginProps>((props, ref) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { isMobile } = useResponsive();
   const [status, setStatus] = useState<'scanning' | 'stopped' | 'error'>('stopped');
   const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
   const [scannedImage, setScannedImage] = useState<string | null>(null);
@@ -97,8 +99,12 @@ const ReactScanBarCode = forwardRef<ReactScanBarCodeRef, Html5QrcodePluginProps>
       if (!devices.length) {
         throw new Error('No camera found');
       }
+      const backCamera = devices.find(
+        device => device.label.toLowerCase().includes('back') || device.label.toLowerCase().includes('rear')
+      );
+      const cameraId = backCamera ? backCamera.id : devices[0].id;
 
-      const cameraId = devices[0].id; //GET THE FIRST CAMERA
+      // const cameraId = devices[0].id; //GET THE FIRST CAMERA
       removeScannedClass();
 
       timeoutRef.current = setInterval(() => {
@@ -218,7 +224,7 @@ const ReactScanBarCode = forwardRef<ReactScanBarCodeRef, Html5QrcodePluginProps>
           alt="Scanned QR Code"
           width={400}
           height={300}
-          style={{ maxWidth: '100%', height: 'auto' }}
+          style={{ maxWidth: '100%', height: isMobile ? '250px' : '300px', borderRadius: '10px' }}
           priority
           unoptimized={false}
         />

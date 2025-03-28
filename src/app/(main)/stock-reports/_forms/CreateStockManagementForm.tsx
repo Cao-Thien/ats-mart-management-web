@@ -157,7 +157,7 @@ const CreateStockManagementForm = ({}: Props) => {
         setProductStock(list?.[0]);
         setValue(MartProductStock.fields.barCodeDisplay, list[0].barcode);
         setValue(MartProductStock.fields.productName, list[0].name);
-        setValue(MartProductStock.fields.productIdDisplay, list[0].productId);
+        setValue(MartProductStock.fields.productIdDisplay, list[0].id);
         if (openInputBarCodeManualProps.open) openInputBarCodeManualProps?.onClose();
         return;
       }
@@ -384,6 +384,7 @@ const CreateStockManagementForm = ({}: Props) => {
           closeAfterTransition={false}
           open={openBarcodeProps.open}
           onClose={handleCloseBarCode}
+          hideCloseIcon
           fullScreen={isMobile}
           contentsSx={{
             flex: 'unset',
@@ -492,12 +493,17 @@ const CreateStockManagementForm = ({}: Props) => {
         maxWidth={'lg'}
       >
         <form id={CreateProductStockForm.searchProduct} onSubmit={handleSubmit(onSearchProductId)}>
-          <Grid container xs={12} width={'480px'} sx={{ border: '1px solid #E0E2EC' }}>
+          <Grid container xs={12} width="100%" maxWidth={'480px'} sx={{ border: '1px solid #E0E2EC' }}>
             <TableHeadCustom>
               <Typography variant="inherit">상품 ID</Typography>
             </TableHeadCustom>
             <TableGridBodyCustom>
-              <FormInput control={control} fullWidth name={MartProductStock.fields.productIdSearch} />
+              <FormInput
+                control={control}
+                sx={{ width: '100%' }}
+                fullWidth
+                name={MartProductStock.fields.productIdSearch}
+              />
             </TableGridBodyCustom>
           </Grid>
         </form>

@@ -4,7 +4,7 @@
   "packageManager": "yarn@4.1.1",
   "private": true,
   "scripts": {
-    "start": "dotenv -e .env.local -e .env.development next dev",
+    "start": "dotenv -e .env.local -e .env.development next dev --experimental-https",
     "start:debug": "NODE_OPTIONS='--inspect' yarn start",
     "build": "next build",
     "build:demo": "NODE_ENV=demo dotenv -e .env.demo next build",
